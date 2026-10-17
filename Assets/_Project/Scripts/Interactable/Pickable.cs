@@ -7,6 +7,7 @@ namespace ProjectPostapo.Interaction
     {
         [SerializeField] private string itemId;
         [SerializeField] private ushort quantity = 1;
+        [SerializeField] private GameObject toDestroy;
 
         public override void Interact(GameObject interactor)
         {
@@ -18,7 +19,14 @@ namespace ProjectPostapo.Interaction
                 if (inventory.AddItem(itemId, quantity))
                 {
                     Debug.Log($"{itemId} added to inventory. Destroying {gameObject.name}.");
-                    Destroy(gameObject);
+                    if (toDestroy == null)
+                    {
+                        Destroy(gameObject);
+                    }
+                    else
+                    {
+                        Destroy(toDestroy);
+                    }
                 }
             }
             else

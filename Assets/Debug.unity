@@ -516,6 +516,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Pickable
   itemId: wood
   quantity: 1
+  toDestroy: {fileID: 446884493}
 --- !u!1 &495961724
 GameObject:
   m_ObjectHideFlags: 0
@@ -1042,6 +1043,11 @@ MonoBehaviour:
   slots:
   - Quantity: 0
   - Quantity: 0
+--- !u!1 &1414655961 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4058242020845871432, guid: 5fb3b1abae356a348a4918037e91333c, type: 3}
+  m_PrefabInstance: {fileID: 4365470468735314805}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1415311591
 GameObject:
   m_ObjectHideFlags: 0
@@ -1843,6 +1849,10 @@ PrefabInstance:
       propertyPath: itemId
       value: rock
       objectReference: {fileID: 0}
+    - target: {fileID: 8584778033441369174, guid: 5fb3b1abae356a348a4918037e91333c, type: 3}
+      propertyPath: toDestroy
+      value: 
+      objectReference: {fileID: 1414655961}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
