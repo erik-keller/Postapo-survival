@@ -46,11 +46,13 @@ namespace ProjectPostapo.Player
                 return;
             }
 
-            if (itemId == null || quantity <= 0)
+            if (itemId == null || itemId == "" || quantity <= 0)
             {
                 ClearSlot(frameClass);
+                return;
             }
 
+            Debug.Log("ItemID: " + itemId);
             ItemSO item = itemDatabase.Instance.GetItem(itemId);
             if (item == null)
             {
