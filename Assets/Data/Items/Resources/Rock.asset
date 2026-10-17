@@ -12,7 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e521032556742ab448d00e5e70e3ede0, type: 3}
   m_Name: Rock
   m_EditorClassIdentifier: Assembly-CSharp::ItemScriptableObject
+  id: rock
   itemName: Rock
-  weight: 1
   icon: {fileID: 2800000, guid: 7f2ff0cb6e72b6a40b0c6876f5c7a287, type: 3}
-  description: 

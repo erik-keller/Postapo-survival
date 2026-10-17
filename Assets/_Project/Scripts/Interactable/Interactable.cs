@@ -9,7 +9,7 @@ namespace ProjectPostapo.Interaction
         {
             if (interactor == null)
             {
-                Debug.LogError("Interacter object is null. Cannot interact.");
+                Debug.LogError("Interactor object is null. Cannot interact.");
             }
 
             float interactorRange = 2f; // Default value
@@ -21,7 +21,7 @@ namespace ProjectPostapo.Interaction
 
             if (Vector3.Distance(interactor.transform.position, transform.position) > interactorRange)
             {
-                Debug.LogWarning("Interacter is too far away to interact with this object.");
+                Debug.LogWarning("Interactor is too far away to interact with this object.");
                 return;
             }
             Debug.Log("Interacted with " + gameObject.name);

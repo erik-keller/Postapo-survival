@@ -12,7 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e521032556742ab448d00e5e70e3ede0, type: 3}
   m_Name: Wood
   m_EditorClassIdentifier: Assembly-CSharp::ItemScriptableObject
+  id: wood
   itemName: Wood
-  weight: 1
   icon: {fileID: 2800000, guid: 811c5f8ad87d309408a4fcc5e00b3dd0, type: 3}
-  description: 

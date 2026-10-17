@@ -1,4 +1,7 @@
+using ProjectPostapo.InventorySystem;
+using ProjectPostapo.UI;
 using System;
+using UnityEditor.Graphs;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -6,105 +9,82 @@ namespace ProjectPostapo.Player
 {
     public class PlayerUI : MonoBehaviour
     {
-        [SerializeField]
-        private GameObject centeredText;
-        [SerializeField]
-        private GameObject Slots;
-
-        public static Action<InventorySlot[]> OnInventorySlotChanged;
-        public static Action<string> OnShowCenteredText;
-        public static Action OnHideCenteredText;
+        [SerializeField] private GameObject centeredText;
+        [SerializeField] private GameObject Frames;
+        [SerializeField] private Inventory inventory;
+        [SerializeField] private ItemDatabase itemDatabase;
 
         private void Start()
         {
-            OnInventorySlotChanged += UpdateSlots;
-            OnShowCenteredText += ShowCenteredText;
-            OnHideCenteredText += HideCenteredText;
+            UIEvents.t_OnInventorySlotChanged += UpdateSlot;
+            UIEvents.t_OnShowCenteredText += ShowCenteredText;
+            UIEvents.t_OnHideCenteredText += HideCenteredText;
+
+            for(int i = 0; i < inventory.Capacity; i++)
+            {
+                UpdateSlot(i, inventory.GetSlotItemId(i), inventory.GetSlotQuantity(i));
+            }
+        }
+
+        public void UpdateSlot(int index, string itemId, int quantity)
+        {
+            if (index < 0)
+            {
+                Debug.LogWarning($"index: {index}");
+                return;
+            }
+
+            GameObject frame = Frames.transform.GetChild(index).gameObject;
+            if (frame == null)
+            {
+                Debug.LogWarning($"Frame: {frame} is null");
+                return;
+            }
+            if (!frame.TryGetComponent<Frame>(out Frame frameClass))
+            {
+                Debug.LogWarning($"Frame class: {frameClass} not found");
+                return;
+            }
+
+            if (itemId == null || quantity <= 0)
+            {
+                ClearSlot(frameClass);
+            }
+
+            ItemSO item = itemDatabase.Instance.GetItem(itemId);
+            if (item == null)
+            {
+                Debug.LogWarning($"{item} is null");
+            }
+
+            frameClass.FrameImgObject.SetActive(true);
+            frameClass.FrameImage.texture = item.icon;
+
+            frameClass.FrameText.text = quantity.ToString();
+            frameClass.FrameTextObject.SetActive(true);
+        }
+        private void ClearSlot(Frame frameClass)
+        {
+            frameClass.FrameImgObject.SetActive(false);
+            frameClass.FrameTextObject.SetActive(false);
         }
 
         public void ShowCenteredText(string message)
         {
-            try
+            if (centeredText == null)
             {
-                if (centeredText == null)
-                {
-                    throw new System.NullReferenceException("Centered Text GameObject is not assigned.");
-                }
-                centeredText.SetActive(true);
-                centeredText.GetComponentInChildren<Text>().text = message;
-
+                Debug.LogWarning("Centered Text GameObject is not assigned.");
             }
-            catch (System.Exception ex)
-            {
-                Debug.LogError($"An error occurred while showing centered text: {ex.Message}");
-            }
+            centeredText.SetActive(true);
+            centeredText.GetComponentInChildren<Text>().text = message;
         }
         public void HideCenteredText()
         {
-            try
+            if (centeredText == null)
             {
-                if (centeredText == null)
-                {
-                    throw new System.NullReferenceException("Centered Text GameObject is not assigned.");
-                }
-                centeredText.SetActive(false);
+                Debug.LogWarning("Centered Text GameObject is not assigned.");
             }
-            catch (System.Exception ex)
-            {
-                Debug.LogError($"An error occurred while hiding centered text: {ex.Message}");
-            }
-        }
-
-        public void UpdateSlots(InventorySlot[] items)
-        {
-            try
-            {
-                if (Slots == null)
-                {
-                    throw new System.NullReferenceException("Slots GameObject is not assigned.");
-                }
-                for (int i = 0; i < Slots.transform.childCount; i++)
-                {
-                    GameObject slot = Slots.transform.GetChild(i).gameObject;
-
-                    GameObject slotImgObject = slot.transform.GetChild(0).gameObject;
-                    GameObject slotTextObject = slot.transform.GetChild(1).gameObject;
-
-                    RawImage slotImage = slotImgObject.GetComponent<RawImage>();
-                    Text slotText = slotTextObject.GetComponent<Text>();
-
-                    if (!items[i].IsEmpty())
-                    {
-                        slotImgObject.SetActive(true);
-                        slotImage.texture = items[i].Item.icon;
-                        slotImage.color = Color.white;
-
-                        if (items[i].Quantity == 0)
-                        {
-                            slotText.text = "0";
-                            slotTextObject.SetActive(false);
-                        }
-                        else
-                        {
-                            slotText.text = items[i].Quantity.ToString();
-                            slotTextObject.SetActive(true);
-                        }
-                    }
-                    else
-                    {
-                        slotText.text = "0";
-                        slotTextObject.SetActive(false);
-
-                        slotImgObject.SetActive(false);
-                        slotImage.texture = null;
-                        slotImage.color = Color.clear;
-                    }
-                }
-            }
-            catch (System.Exception ex)
-            {
-                Debug.LogError($"An error occurred while updating slots: {ex.Message}");
-            }
+            centeredText.SetActive(false);
         }
     }
 }

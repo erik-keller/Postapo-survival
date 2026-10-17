@@ -1,4 +1,5 @@
 using ProjectPostapo.Interaction;
+using ProjectPostapo.UI;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -78,7 +79,7 @@ namespace ProjectPostapo.Player
                 Interactable interactable = hit.collider.GetComponent<Interactable>();
                 if (interactable != null)
                 {
-                    PlayerUI.OnShowCenteredText?.Invoke("Press E to interact with " + interactable.GetName());
+                    UIEvents.t_OnShowCenteredText?.Invoke("Press E to interact with " + interactable.GetName());
                     if (interactionAction.action.WasPressedThisFrame())
                     {
                         interactable.Interact(gameObject);
@@ -87,7 +88,7 @@ namespace ProjectPostapo.Player
             }
             else
             {
-                PlayerUI.OnHideCenteredText?.Invoke();
+                UIEvents.t_OnHideCenteredText?.Invoke();
             }
         }
 

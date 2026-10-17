@@ -1,31 +1,30 @@
-// using ProjectPostapo.Player;
+using ProjectPostapo.InventorySystem;
 using UnityEngine;
 
 namespace ProjectPostapo.Interaction
 {
     public class Pickable : Interactable
     {
-        //[SerializeField] private ItemScriptableObject item;
-        [SerializeField] private GameObject objectToDestroy;
+        [SerializeField] private string itemId;
         [SerializeField] private ushort quantity = 1;
 
         public override void Interact(GameObject interactor)
         {
             base.Interact(interactor);
-            /*
-            if (interactor.TryGetComponent(out PlayerInventory p))
+            
+            if (interactor.TryGetComponent(out Inventory inventory))
             {
-                Debug.Log($"Player interacted with {gameObject.name} and is adding {item.itemName} to inventory.");
-                if (p.Inventory.AddItem(item, quantity))
+                Debug.Log($"Player interacted with {gameObject.name} and is adding {itemId} to inventory.");
+                if (inventory.AddItem(itemId, quantity))
                 {
-                    Debug.Log($"{item.itemName} added to inventory. Destroying {gameObject.name}.");
-                    Destroy(objectToDestroy);
+                    Debug.Log($"{itemId} added to inventory. Destroying {gameObject.name}.");
+                    Destroy(gameObject);
                 }
             }
             else
             {
                 Debug.LogError("Player doesn't have a PlayerInventory component.");
-            }*/
+            }
         }
     }
 }

@@ -2,7 +2,8 @@
     "name": "Interaction",
     "rootNamespace": "ProjectPostapo.Interaction",
     "references": [
-        "GUID:3a48dce6c03bfc944963827333708a67"
+        "GUID:3a48dce6c03bfc944963827333708a67",
+        "GUID:4577610cd6aa8a648b7c4e9ae8e4bc96"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
