@@ -70,7 +70,11 @@ namespace ProjectPostapo.InventorySystem
         {
             for (int i = 0; i < Capacity; i++)
             {
-                if (slots[i].IsEmpty && slots[i].Item.itemId == itemId)
+                if (slots[i].IsEmpty)
+                {
+                    continue;
+                }
+                if (slots[i].Item.itemId == itemId)
                 {
                     return i;
                 }
