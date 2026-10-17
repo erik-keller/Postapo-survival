@@ -1,0 +1,16 @@
+{
+    "name": "Interaction",
+    "rootNamespace": "ProjectPostapo.Interaction",
+    "references": [
+        "GUID:3a48dce6c03bfc944963827333708a67"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

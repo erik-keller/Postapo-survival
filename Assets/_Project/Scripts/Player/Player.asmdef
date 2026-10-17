@@ -1,0 +1,19 @@
+{
+    "name": "Player",
+    "rootNamespace": "ProjectPostapo.Player",
+    "references": [
+        "GUID:b8dc8d1949e16f048a760082a38090d2",
+        "GUID:75469ad4d38634e559750d17036d5f7c",
+        "GUID:3a48dce6c03bfc944963827333708a67",
+        "GUID:f9de1ba19e0994243b5c7055bce2d244"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
