@@ -10,7 +10,7 @@ namespace ProjectPostapo.Interaction
 
         public override void Interact(GameObject interactor)
         {
-            if (itemId == null || itemId == "")
+            if (itemId == null || itemId == string.Empty || itemId == "")
             {
                 Debug.LogWarning($"itemId is {itemId}(null or empty)");
                 return;
