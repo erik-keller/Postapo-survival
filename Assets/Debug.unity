@@ -502,21 +502,11 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 546144625392708785, guid: ba5e8d8f80776df41b822f8fe87b36bc, type: 3}
   m_PrefabInstance: {fileID: 4454309953515660045}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &446884496
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
+--- !u!1 &476986081 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4058242020845871432, guid: 5fb3b1abae356a348a4918037e91333c, type: 3}
+  m_PrefabInstance: {fileID: 1685504193}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 446884493}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5cba7515749c5f641ac98f177823405d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Pickable
-  itemId: wood
-  quantity: 1
-  toDestroy: {fileID: 446884493}
 --- !u!1 &495961724
 GameObject:
   m_ObjectHideFlags: 0
@@ -1474,6 +1464,14 @@ PrefabInstance:
       propertyPath: itemId
       value: rock
       objectReference: {fileID: 0}
+    - target: {fileID: 8584778033441369174, guid: 5fb3b1abae356a348a4918037e91333c, type: 3}
+      propertyPath: toDestroy
+      value: 
+      objectReference: {fileID: 476986081}
+    - target: {fileID: 8584778033441369174, guid: 5fb3b1abae356a348a4918037e91333c, type: 3}
+      propertyPath: itemDatabase
+      value: 
+      objectReference: {fileID: 889925217}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1853,6 +1851,10 @@ PrefabInstance:
       propertyPath: toDestroy
       value: 
       objectReference: {fileID: 1414655961}
+    - target: {fileID: 8584778033441369174, guid: 5fb3b1abae356a348a4918037e91333c, type: 3}
+      propertyPath: itemDatabase
+      value: 
+      objectReference: {fileID: 889925217}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1910,13 +1912,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7832039898754208832, guid: ba5e8d8f80776df41b822f8fe87b36bc, type: 3}
+      propertyPath: itemId
+      value: wood
+      objectReference: {fileID: 0}
+    - target: {fileID: 7832039898754208832, guid: ba5e8d8f80776df41b822f8fe87b36bc, type: 3}
+      propertyPath: toDestroy
+      value: 
+      objectReference: {fileID: 446884493}
+    - target: {fileID: 7832039898754208832, guid: ba5e8d8f80776df41b822f8fe87b36bc, type: 3}
+      propertyPath: itemDatabase
+      value: 
+      objectReference: {fileID: 889925217}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 546144625392708785, guid: ba5e8d8f80776df41b822f8fe87b36bc, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 446884496}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ba5e8d8f80776df41b822f8fe87b36bc, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
