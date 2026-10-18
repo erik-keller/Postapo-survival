@@ -50,11 +50,12 @@ namespace ProjectPostapo.Player
                 return;
             }
 
-            Debug.Log("ItemID: " + itemId);
             ItemSO item = itemDatabase.Instance.GetItem(itemId);
+
             if (item == null)
             {
                 Debug.LogWarning($"{item} is null");
+                return;
             }
 
             frameClass.FrameImgObject.SetActive(true);
@@ -73,8 +74,10 @@ namespace ProjectPostapo.Player
         {
             if (centeredText == null)
             {
-                Debug.LogWarning("Centered Text GameObject is not assigned.");
+                Debug.LogWarning("centeredText GameObject is not assigned.");
+                return;
             }
+
             centeredText.SetActive(true);
             centeredText.GetComponentInChildren<Text>().text = message;
         }
@@ -82,9 +85,12 @@ namespace ProjectPostapo.Player
         {
             if (centeredText == null)
             {
-                Debug.LogWarning("Centered Text GameObject is not assigned.");
+                Debug.LogWarning("centeredText GameObject is not assigned.");
+                return;
             }
+
             centeredText.SetActive(false);
+            centeredText.GetComponentInChildren<Text>().text = string.Empty;
         }
     }
 }
