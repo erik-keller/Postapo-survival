@@ -94,6 +94,11 @@ namespace ProjectPostapo.Player
 
         private void HandleMouse()
         {
+            if (Cursor.lockState != CursorLockMode.Locked)
+            {
+                return;
+            }
+
             Vector2 input = lookAction.action.ReadValue<Vector2>();
 
             if (input != Vector2.zero)
