@@ -18,10 +18,7 @@ namespace ProjectPostapo.InventorySystem
                 return;
             }
 
-            int newQuantity = Quantity + amount;
-            newQuantity = Mathf.Clamp(newQuantity, 0, 100); // Warning
-
-            Quantity = newQuantity;
+            Quantity = Mathf.Clamp(Quantity + amount, 0, 100); // Warning
             
             if (Quantity == 0)
             {
