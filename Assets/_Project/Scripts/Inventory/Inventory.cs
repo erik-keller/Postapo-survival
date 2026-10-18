@@ -36,7 +36,7 @@ namespace ProjectPostapo.InventorySystem
                 slots[index].ChangeQuantity(amount);
             }
 
-            UIEvents.t_OnInventorySlotChanged?.Invoke(index, itemId, amount);
+            UIEvents.t_OnInventorySlotChanged?.Invoke(index, slots[index].Item.itemId, slots[index].Quantity);
             return true;
         }
 
