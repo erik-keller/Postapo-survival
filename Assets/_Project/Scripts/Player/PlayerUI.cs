@@ -1,7 +1,5 @@
 using ProjectPostapo.InventorySystem;
 using ProjectPostapo.UI;
-using System;
-using UnityEditor.Graphs;
 using UnityEngine;
 using UnityEngine.UI;
 

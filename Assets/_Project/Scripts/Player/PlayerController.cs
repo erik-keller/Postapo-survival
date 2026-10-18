@@ -5,12 +5,11 @@ using UnityEngine.InputSystem;
 
 namespace ProjectPostapo.Player
 {
-    [RequireComponent(typeof(Transform))]
     public class PlayerController : MonoBehaviour
     {
-        [SerializeField] PlayerMovement playerMovement;
-        [SerializeField] MouseMovement mouseMovement;
-        [SerializeField] Camera playerCamera;
+        [SerializeField] private PlayerMovement playerMovement;
+        [SerializeField] private MouseMovement mouseMovement;
+        [SerializeField] private Camera playerCamera;
 
         [Header("Input Actions")]
         [SerializeField] private InputActionReference moveAction;
@@ -74,21 +73,24 @@ namespace ProjectPostapo.Player
         private void HandleInteraction()
         {
             Ray ray = playerCamera.ScreenPointToRay(Mouse.current.position.ReadValue());
-            if (Physics.Raycast(ray, out RaycastHit hit, 2f))
-            {
-                Interactable interactable = hit.collider.GetComponent<Interactable>();
-                if (interactable != null)
-                {
-                    UIEvents.t_OnShowCenteredText?.Invoke("Press E to interact with " + interactable.GetName());
-                    if (interactionAction.action.WasPressedThisFrame())
-                    {
-                        interactable.Interact(gameObject);
-                    }
-                }
-            }
-            else
+
+            if (!Physics.Raycast(ray, out RaycastHit hit, 2f))
             {
                 UIEvents.t_OnHideCenteredText?.Invoke();
+                return;
+            }
+
+            if (!hit.collider.TryGetComponent<IInteractable>(out IInteractable interactable))
+            {
+                UIEvents.t_OnHideCenteredText?.Invoke();
+                return;
+            }
+
+            UIEvents.t_OnShowCenteredText?.Invoke($"Press E to interact with {interactable.GetName()}");
+
+            if (interactionAction.action.WasPressedThisFrame())
+            {
+                interactable.Interact(gameObject);
             }
         }
 

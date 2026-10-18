@@ -1,15 +1,20 @@
-using UnityEngine;
+using ProjectPostapo.InventorySystem;
 using ProjectPostapo.Stats;
+using UnityEngine;
 
 namespace ProjectPostapo.Interaction
 {
     public abstract class Interactable : MonoBehaviour, IInteractable
     {
+        [SerializeField] protected string itemId;
+        [SerializeField] protected ItemDatabase itemDatabase;
+
         public virtual void Interact(GameObject interactor)
         {
             if (interactor == null)
             {
                 Debug.LogError("Interactor object is null. Cannot interact.");
+                return;
             }
 
             float interactorRange = 2f; // Default value
@@ -27,9 +32,19 @@ namespace ProjectPostapo.Interaction
             Debug.Log("Interacted with " + gameObject.name);
         }
 
-        public virtual string GetName()
+        public string GetName()
         {
-            return string.Empty;
+            if (itemDatabase == null)
+            {
+                Debug.LogWarning("itemDatabase is null");
+                return string.Empty;
+            }
+            if (itemDatabase.Instance.GetItem(itemId).itemName == null)
+            {
+                Debug.LogWarning("itemName not found");
+                return string.Empty;
+            }
+            return itemDatabase.Instance.GetItem(itemId).itemName;
         }
     }
 }

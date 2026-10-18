@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace ProjectPostapo.Interaction
 {
-    interface IInteractable
+    public interface IInteractable
     {
         /// <summary>
         /// Interact with the object.
