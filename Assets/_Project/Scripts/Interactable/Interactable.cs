@@ -29,6 +29,7 @@ namespace ProjectPostapo.Interaction
                 Debug.LogWarning("Interactor is too far away to interact with this object.");
                 return;
             }
+
             Debug.Log("Interacted with " + gameObject.name);
         }
 

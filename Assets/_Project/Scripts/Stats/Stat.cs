@@ -2,10 +2,9 @@ using UnityEngine;
 
 namespace ProjectPostapo.Stats
 {
-    [System.Serializable]
     public class Stat
     {
-        [SerializeField] private float baseValue;
+        private float baseValue;
 
         public float Value
         {

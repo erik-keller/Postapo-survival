@@ -1,9 +1,7 @@
 {
     "name": "InventorySystem",
     "rootNamespace": "ProjectPostapo.InventorySystem",
-    "references": [
-        "GUID:395521046665461408fd1bc5e10d5040"
-    ],
+    "references": [],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,

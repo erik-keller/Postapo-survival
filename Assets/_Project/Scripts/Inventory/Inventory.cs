@@ -1,16 +1,19 @@
-using ProjectPostapo.UI;
 using System.Collections.Generic;
-using UnityEngine;
+using UnityEngine.Events;
 
 namespace ProjectPostapo.InventorySystem
 {
-    public class Inventory : MonoBehaviour
+    public class Inventory : IAddItem
     {
-        [SerializeField] public int Capacity = 2;
-        [SerializeField] private List<InventorySlot> slots = new();
+        public uint Capacity = 2;
+        private List<InventorySlot> slots = new();
 
-        private void Awake()
+        public UnityEvent<int, string, int> OnInventorySlotChanged = new();
+
+        public Inventory(uint capacity)
         {
+            Capacity = capacity;
+
             for (int i = 0; i < Capacity; i++)
             {
                 slots.Add(new InventorySlot());
@@ -36,7 +39,8 @@ namespace ProjectPostapo.InventorySystem
                 slots[index].ChangeQuantity(amount);
             }
 
-            UIEvents.t_OnInventorySlotChanged?.Invoke(index, slots[index].Item.itemId, slots[index].Quantity);
+            //UIEvents.t_OnInventorySlotChanged?.Invoke(index, slots[index].Item.itemId, slots[index].Quantity);
+            OnInventorySlotChanged?.Invoke(index, slots[index].Item.itemId, slots[index].Quantity);
             return true;
         }
 
@@ -51,7 +55,7 @@ namespace ProjectPostapo.InventorySystem
             {
                 return null;
             }
-            if (slots[index].Item== null)
+            if (slots[index].Item == null)
             {
                 return null;
             }

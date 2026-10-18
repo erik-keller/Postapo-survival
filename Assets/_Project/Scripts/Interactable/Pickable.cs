@@ -18,7 +18,7 @@ namespace ProjectPostapo.Interaction
 
             base.Interact(interactor);
 
-            if (!interactor.TryGetComponent(out Inventory inventory))
+            if (!interactor.TryGetComponent(out IAddItem inventory))
             {
                 Debug.LogError("Interactor don't have inventory.");
                 return;

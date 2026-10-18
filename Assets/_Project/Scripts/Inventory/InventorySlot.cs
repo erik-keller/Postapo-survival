@@ -2,7 +2,6 @@ using UnityEngine;
 
 namespace ProjectPostapo.InventorySystem
 {
-    [System.Serializable]
     public class InventorySlot
     {
         public ItemInstance Item;

@@ -22,12 +22,15 @@ namespace ProjectPostapo.Player
 
         private void Start()
         {
-            if (TryGetComponent<IGetStatValue>(out playerStats))
+            if (!TryGetComponent<IGetStatValue>(out playerStats))
             {
-                playerSpeed = playerStats.GetStatValue(StatType.MovementSpeed);
-                playerSprintMultiplier = playerStats.GetStatValue(StatType.SprintMultiplier);
-                jumpHeight = playerStats.GetStatValue(StatType.JumpHeight);
+                Debug.LogWarning("IGetStatValue not found");
+                return;
             }
+
+            playerSpeed = playerStats.GetStatValue(StatType.MovementSpeed);
+            playerSprintMultiplier = playerStats.GetStatValue(StatType.SprintMultiplier);
+            jumpHeight = playerStats.GetStatValue(StatType.JumpHeight);
         }
 
         private void Update()

@@ -1,3 +1,4 @@
+using ProjectPostapo.CreatureSystem;
 using ProjectPostapo.InventorySystem;
 using ProjectPostapo.UI;
 using UnityEngine;
@@ -7,18 +8,29 @@ namespace ProjectPostapo.Player
 {
     public class PlayerUI : MonoBehaviour
     {
+        [SerializeField] private Creature playerCreature;
+
         [SerializeField] private GameObject centeredText;
-        [SerializeField] private GameObject Frames;
-        [SerializeField] private Inventory inventory;
+        [SerializeField] private GameObject frames;
+        //[SerializeField] private Inventory inventory;
         [SerializeField] private ItemDatabase itemDatabase;
 
         private void Start()
         {
-            UIEvents.t_OnInventorySlotChanged += UpdateSlot;
+            Inventory inventory = playerCreature.Inventory;
+
+            if (inventory == null)
+            {
+                Debug.LogWarning("inventory is null");
+                return;
+            }
+
+            inventory.OnInventorySlotChanged.AddListener(UpdateSlot);
+
             UIEvents.t_OnShowCenteredText += ShowCenteredText;
             UIEvents.t_OnHideCenteredText += HideCenteredText;
 
-            for(int i = 0; i < inventory.Capacity; i++)
+            for (int i = 0; i < inventory.Capacity; i++)
             {
                 UpdateSlot(i, inventory.GetSlotItemId(i), inventory.GetSlotQuantity(i));
             }
@@ -32,7 +44,7 @@ namespace ProjectPostapo.Player
                 return;
             }
 
-            GameObject frame = Frames.transform.GetChild(index).gameObject;
+            GameObject frame = frames.transform.GetChild(index).gameObject;
             if (frame == null)
             {
                 Debug.LogWarning($"Frame: {frame} is null");
