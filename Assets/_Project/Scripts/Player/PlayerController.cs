@@ -1,3 +1,4 @@
+using ProjectPostapo.CreatureSystem;
 using ProjectPostapo.Interaction;
 using ProjectPostapo.UI;
 using UnityEngine;
@@ -7,7 +8,7 @@ namespace ProjectPostapo.Player
 {
     public class PlayerController : MonoBehaviour
     {
-        [SerializeField] private PlayerMovement playerMovement;
+        [SerializeField] private CreatureMovement playerMovement;
         [SerializeField] private MouseMovement mouseMovement;
         [SerializeField] private Camera playerCamera;
 
@@ -55,18 +56,13 @@ namespace ProjectPostapo.Player
         {
             Vector2 input = moveAction.action.ReadValue<Vector2>();
 
-            if (input != Vector2.zero)
-            {
-                playerMovement.Move(input, sprintAction.action.IsPressed());
-            }
-            else
-            {
-                playerMovement.Move(Vector2.zero, sprintAction.action.IsPressed());
-            }
+            MoveCommand moveCommand = new(input, sprintAction.action.IsPressed());
+            moveCommand.Execute(ref playerMovement);
 
             if (jumpAction.action.WasPerformedThisFrame())
             {
-                playerMovement.Jump();
+                JumpCommand jumpCommand = new();
+                jumpCommand.Execute(ref playerMovement);
             }
         }
 

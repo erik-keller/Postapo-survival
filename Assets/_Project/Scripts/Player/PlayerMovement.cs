@@ -1,11 +1,12 @@
-using UnityEngine;
-using ProjectPostapo.Stats;
 using ProjectPostapo.Core;
+using ProjectPostapo.CreatureSystem;
+using ProjectPostapo.Stats;
+using UnityEngine;
 
 namespace ProjectPostapo.Player
 {
     [RequireComponent(typeof(CharacterController))]
-    public class PlayerMovement : MonoBehaviour
+    public class PlayerMovement : CreatureMovement
     {
         [SerializeField] private CharacterController characterController;
 
@@ -48,7 +49,7 @@ namespace ProjectPostapo.Player
             characterController.Move(playerVelocity * Time.deltaTime);
         }
 
-        public void Move(Vector2 input, bool isSprinting)
+        public override void Move(Vector2 input, bool isSprinting)
         {
             Vector3 move = (input.x * transform.right) + (transform.forward * input.y);
             move = Vector3.ClampMagnitude(move, 1f);
@@ -64,7 +65,7 @@ namespace ProjectPostapo.Player
             playerVelocity.z = move.z * currentSpeed;
         }
 
-        public void Jump()
+        public override void Jump()
         {
             if (groundedPlayer)
             {
