@@ -21,9 +21,10 @@ namespace ProjectPostapo.InventorySystem
             }
             instance = this;
 
-            foreach(var item in allItems)
+            foreach(ItemSO item in allItems)
             {
-                string id = item.GetComponent(ItemComponent.Id);
+                IGetComponent comp = item;
+                string id = comp.GetComponentValue(ItemComponent.Id);
 
                 if (!itemLookupTable.ContainsKey(id))
                 {

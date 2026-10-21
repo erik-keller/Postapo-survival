@@ -40,14 +40,15 @@ namespace ProjectPostapo.Interaction
                 return string.Empty;
             }
 
-            string name = itemDatabase.Instance.GetItem(itemId).GetComponent(ItemComponent.Name);
+            IGetComponent name = itemDatabase.Instance.GetItem(itemId);
 
             if (name == null)
             {
                 Debug.LogWarning("itemName not found");
                 return string.Empty;
             }
-            return name;
+
+            return name.GetComponentValue(ItemComponent.Name);
         }
     }
 }
