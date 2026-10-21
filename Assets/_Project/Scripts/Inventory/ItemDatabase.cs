@@ -1,3 +1,4 @@
+using ProjectPostapo.ScriptableObjects;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -22,13 +23,15 @@ namespace ProjectPostapo.InventorySystem
 
             foreach(var item in allItems)
             {
-                if (!itemLookupTable.ContainsKey(item.id))
+                string id = item.GetComponent(ItemComponent.Id);
+
+                if (!itemLookupTable.ContainsKey(id))
                 {
-                    itemLookupTable.Add(item.id, item);
+                    itemLookupTable.Add(id, item);
                 }
                 else
                 {
-                    Debug.LogWarning($"Duplicated ID of item in base: {item.id}");
+                    Debug.LogWarning($"Duplicated ID of item in base: {id}");
                 }
             }
         }

@@ -1,5 +1,6 @@
 using ProjectPostapo.CreatureSystem;
 using ProjectPostapo.InventorySystem;
+using ProjectPostapo.ScriptableObjects;
 using ProjectPostapo.UI;
 using UnityEngine;
 using UnityEngine.UI;
@@ -71,7 +72,7 @@ namespace ProjectPostapo.Player
             }
 
             frameClass.FrameImgObject.SetActive(true);
-            frameClass.FrameImage.texture = item.icon;
+            frameClass.FrameImage.texture = item.Icon;
 
             frameClass.FrameText.text = quantity.ToString();
             frameClass.FrameTextObject.SetActive(true);

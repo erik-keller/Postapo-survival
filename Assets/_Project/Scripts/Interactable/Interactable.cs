@@ -1,4 +1,5 @@
 using ProjectPostapo.InventorySystem;
+using ProjectPostapo.ScriptableObjects;
 using ProjectPostapo.Stats;
 using UnityEngine;
 
@@ -29,8 +30,6 @@ namespace ProjectPostapo.Interaction
                 Debug.LogWarning("Interactor is too far away to interact with this object.");
                 return;
             }
-
-            Debug.Log("Interacted with " + gameObject.name);
         }
 
         public string GetName()
@@ -40,12 +39,15 @@ namespace ProjectPostapo.Interaction
                 Debug.LogWarning("itemDatabase is null");
                 return string.Empty;
             }
-            if (itemDatabase.Instance.GetItem(itemId).itemName == null)
+
+            string name = itemDatabase.Instance.GetItem(itemId).GetComponent(ItemComponent.Name);
+
+            if (name == null)
             {
                 Debug.LogWarning("itemName not found");
                 return string.Empty;
             }
-            return itemDatabase.Instance.GetItem(itemId).itemName;
+            return name;
         }
     }
 }
