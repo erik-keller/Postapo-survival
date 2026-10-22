@@ -1,4 +1,5 @@
 ﻿<Solution>
+  <Project Path="Tests.csproj" />
   <Project Path="InventorySystem.csproj" />
   <Project Path="CreatureSystem.csproj" />
   <Project Path="Player.csproj" />
