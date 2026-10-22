@@ -7,7 +7,7 @@ namespace ProjectPostapo.Interaction
         /// <summary>
         /// Interact with the object.
         /// </summary>
-        public void Interact(GameObject interactor);
+        public void Interact(GameObject interactor, float interactorRange = 2f);
         public string GetName();
     }
 }

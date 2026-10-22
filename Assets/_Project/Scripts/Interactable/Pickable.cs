@@ -8,7 +8,7 @@ namespace ProjectPostapo.Interaction
         [SerializeField] private ushort quantity = 1;
         [SerializeField] private GameObject toDestroy;
 
-        public override void Interact(GameObject interactor)
+        public override void Interact(GameObject interactor, float interactorRange = 2f)
         {
             if (itemId == null || itemId == string.Empty || itemId == "")
             {

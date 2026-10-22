@@ -68,9 +68,11 @@ namespace ProjectPostapo.Player
 
         private void HandleInteraction()
         {
+            float distance = 2f;
+
             Ray ray = playerCamera.ScreenPointToRay(Mouse.current.position.ReadValue());
 
-            if (!Physics.Raycast(ray, out RaycastHit hit, 2f))
+            if (!Physics.Raycast(ray, out RaycastHit hit, distance))
             {
                 UIEvents.t_OnHideCenteredText?.Invoke();
                 return;
@@ -86,7 +88,7 @@ namespace ProjectPostapo.Player
 
             if (interactionAction.action.WasPressedThisFrame())
             {
-                interactable.Interact(gameObject);
+                interactable.Interact(gameObject, distance);
             }
         }
 

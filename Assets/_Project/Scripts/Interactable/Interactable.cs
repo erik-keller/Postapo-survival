@@ -10,15 +10,13 @@ namespace ProjectPostapo.Interaction
         [SerializeField] protected string itemId;
         [SerializeField] protected ItemDatabase itemDatabase;
 
-        public virtual void Interact(GameObject interactor)
+        public virtual void Interact(GameObject interactor, float interactorRange = 2f)
         {
             if (interactor == null)
             {
                 Debug.LogError("Interactor object is null. Cannot interact.");
                 return;
             }
-
-            float interactorRange = 2f; // Default value
 
             if (interactor.TryGetComponent<IGetStatValue>(out IGetStatValue stats))
             {
