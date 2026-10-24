@@ -44,12 +44,12 @@ namespace ProjectPostapo.Player
         {
             HandleMovement();
             HandleInteraction();
+            HandleInventoryOpen();
         }
 
         private void FixedUpdate()
         {
             HandleMouse();
-            HandleInventoryOpen();
         }
 
         private void HandleMovement()
