@@ -828,6 +828,7 @@ GameObject:
   - component: {fileID: 1184899504}
   - component: {fileID: 1184899494}
   - component: {fileID: 1184899506}
+  - component: {fileID: 1184899507}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -863,6 +864,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMovementController
   playerMovement: {fileID: 1184899504}
   mouseMovement: {fileID: 1184899494}
+  playerEye: {fileID: 1184899507}
   playerCamera: {fileID: 1415311595}
   moveAction: {fileID: -1680190386980627800, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   jumpAction: {fileID: -2099379676528639254, guid: 052faaac586de48259a63d0c4782560b, type: 3}
@@ -1030,6 +1032,18 @@ MonoBehaviour:
     Value: 1.5
   - Type: 5
     Value: 1.5
+--- !u!114 &1184899507
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1184899493}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05c35c142e9d6764881ddde65a13c6e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Player::ProjectPostapo.Player.PlayerEye
 --- !u!1 &1414655961 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4058242020845871432, guid: 5fb3b1abae356a348a4918037e91333c, type: 3}

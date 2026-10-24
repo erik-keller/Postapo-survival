@@ -10,7 +10,7 @@ namespace ProjectPostapo.Player
     {
         [SerializeField] private CreatureMovement playerMovement;
         [SerializeField] private MouseMovement mouseMovement;
-        [SerializeField] private Camera playerCamera;
+        [SerializeField] private PlayerEye playerEye;
 
         [Header("Input Actions")]
         [SerializeField] private InputActionReference moveAction;
@@ -68,27 +68,9 @@ namespace ProjectPostapo.Player
 
         private void HandleInteraction()
         {
-            float distance = 2f;
-
-            Ray ray = playerCamera.ScreenPointToRay(Mouse.current.position.ReadValue());
-
-            if (!Physics.Raycast(ray, out RaycastHit hit, distance))
-            {
-                UIEvents.t_OnHideCenteredText?.Invoke();
-                return;
-            }
-
-            if (!hit.collider.TryGetComponent<IInteractable>(out IInteractable interactable))
-            {
-                UIEvents.t_OnHideCenteredText?.Invoke();
-                return;
-            }
-
-            UIEvents.t_OnShowCenteredText?.Invoke($"Press E to interact with {interactable.GetName()}");
-
             if (interactionAction.action.WasPressedThisFrame())
             {
-                interactable.Interact(gameObject, distance);
+                playerEye.TryInteract();
             }
         }
 
@@ -103,7 +85,7 @@ namespace ProjectPostapo.Player
 
             if (input != Vector2.zero)
             {
-                mouseMovement.Look(input);
+                mouseMovement.MoveCamera(input);
             }
         }
 

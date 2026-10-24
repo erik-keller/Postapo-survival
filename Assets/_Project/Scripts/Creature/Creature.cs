@@ -26,6 +26,7 @@ namespace ProjectPostapo.CreatureSystem
             else
             {
                 Debug.LogWarning("Loaded default stat values");
+
                 Stats.AddStat(StatType.MaxHealth, 100.0f);
                 Stats.AddStat(StatType.CurrentHealth, 100.0f);
                 Stats.AddStat(StatType.InteractionRange, 2.0f);
