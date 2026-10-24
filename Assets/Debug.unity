@@ -374,7 +374,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 160, y: 30}
+  m_SizeDelta: {x: 300, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &207029203
 MonoBehaviour:
@@ -850,6 +850,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::MouseController
   sensitivity: 20
   cameraTransform: {fileID: 1415311592}
+  playerCamera: {fileID: 1415311595}
 --- !u!114 &1184899495
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -865,7 +866,6 @@ MonoBehaviour:
   playerMovement: {fileID: 1184899504}
   mouseMovement: {fileID: 1184899494}
   playerEye: {fileID: 1184899507}
-  playerCamera: {fileID: 1415311595}
   moveAction: {fileID: -1680190386980627800, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   jumpAction: {fileID: -2099379676528639254, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   interactionAction: {fileID: 1781555164194001046, guid: 052faaac586de48259a63d0c4782560b, type: 3}
@@ -1044,6 +1044,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05c35c142e9d6764881ddde65a13c6e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Player::ProjectPostapo.Player.PlayerEye
+  playerCamera: {fileID: 1415311595}
 --- !u!1 &1414655961 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4058242020845871432, guid: 5fb3b1abae356a348a4918037e91333c, type: 3}
