@@ -1481,6 +1481,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 476986081}
     - target: {fileID: 8584778033441369174, guid: 5fb3b1abae356a348a4918037e91333c, type: 3}
+      propertyPath: objectName
+      value: Rock
+      objectReference: {fileID: 0}
+    - target: {fileID: 8584778033441369174, guid: 5fb3b1abae356a348a4918037e91333c, type: 3}
       propertyPath: itemDatabase
       value: 
       objectReference: {fileID: 889925217}
@@ -1864,6 +1868,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1414655961}
     - target: {fileID: 8584778033441369174, guid: 5fb3b1abae356a348a4918037e91333c, type: 3}
+      propertyPath: objectName
+      value: Rock
+      objectReference: {fileID: 0}
+    - target: {fileID: 8584778033441369174, guid: 5fb3b1abae356a348a4918037e91333c, type: 3}
       propertyPath: itemDatabase
       value: 
       objectReference: {fileID: 889925217}
@@ -1932,6 +1940,10 @@ PrefabInstance:
       propertyPath: toDestroy
       value: 
       objectReference: {fileID: 446884493}
+    - target: {fileID: 7832039898754208832, guid: ba5e8d8f80776df41b822f8fe87b36bc, type: 3}
+      propertyPath: objectName
+      value: Tree
+      objectReference: {fileID: 0}
     - target: {fileID: 7832039898754208832, guid: ba5e8d8f80776df41b822f8fe87b36bc, type: 3}
       propertyPath: itemDatabase
       value: 

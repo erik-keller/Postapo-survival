@@ -1,4 +1,3 @@
-using ProjectPostapo.InventorySystem;
 using ProjectPostapo.ScriptableObjects;
 using ProjectPostapo.Stats;
 using UnityEngine;
@@ -7,8 +6,7 @@ namespace ProjectPostapo.Interaction
 {
     public abstract class Interactable : MonoBehaviour, IInteractable
     {
-        [SerializeField] protected string itemId;
-        [SerializeField] protected ItemDatabase itemDatabase;
+        [SerializeField] private string objectName;
 
         public virtual void Interact(GameObject interactor, float interactorRange = 2f)
         {
@@ -32,21 +30,7 @@ namespace ProjectPostapo.Interaction
 
         public string GetName()
         {
-            if (itemDatabase == null)
-            {
-                Debug.LogWarning("itemDatabase is null");
-                return string.Empty;
-            }
-
-            IGetComponent name = itemDatabase.Instance.GetItem(itemId);
-
-            if (name == null)
-            {
-                Debug.LogWarning("itemName not found");
-                return string.Empty;
-            }
-
-            return name.GetComponentValue(ItemComponent.Name);
+            return objectName;
         }
     }
 }

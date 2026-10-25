@@ -1,26 +1,31 @@
 using ProjectPostapo.InventorySystem;
+using ProjectPostapo.ScriptableObjects;
 using UnityEngine;
 
 namespace ProjectPostapo.Interaction
 {
     public class Pickable : Interactable
     {
+        [SerializeField] private GameObject objectToDestroy;
+
+        [Header("Add Item")]
+        [SerializeField] protected string itemId;
+        [SerializeField] protected ItemDatabase itemDatabase;
         [SerializeField] private ushort quantity = 1;
-        [SerializeField] private GameObject toDestroy;
 
         public override void Interact(GameObject interactor, float interactorRange = 2f)
         {
+            base.Interact(interactor);
+
             if (itemId == null || itemId == string.Empty || itemId == "")
             {
                 Debug.LogWarning($"itemId is {itemId}(null or empty)");
                 return;
             }
 
-            base.Interact(interactor);
-
             if (!interactor.TryGetComponent(out IAddItem inventory))
             {
-                Debug.LogError("Interactor don't have inventory.");
+                Debug.LogError("Not found IAddItem at interactor.");
                 return;
             }
 
@@ -30,13 +35,13 @@ namespace ProjectPostapo.Interaction
                 return;
             }
 
-            if (toDestroy == null)
+            if (objectToDestroy == null)
             {
                 Destroy(gameObject);
             }
             else
             {
-                Destroy(toDestroy);
+                Destroy(objectToDestroy);
             }
         }
     }
