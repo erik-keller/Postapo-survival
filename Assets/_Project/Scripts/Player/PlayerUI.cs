@@ -14,7 +14,6 @@ namespace ProjectPostapo.Player
         [SerializeField] private GameObject centeredText;
         [SerializeField] private GameObject frames;
         //[SerializeField] private Inventory inventory;
-        [SerializeField] private ItemDatabase itemDatabase;
 
         private void Start()
         {
@@ -63,7 +62,7 @@ namespace ProjectPostapo.Player
                 return;
             }
 
-            ItemSO item = itemDatabase.Instance.GetItem(itemId);
+            ItemSO item = ItemDatabase.Instance.GetItem(itemId);
 
             if (item == null)
             {

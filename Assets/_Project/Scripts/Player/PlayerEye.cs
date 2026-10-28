@@ -66,7 +66,7 @@ namespace ProjectPostapo.Player
             {
                 return;
             }
-
+             
             interactable.Interact(gameObject, distance);
             UIEvents.t_OnHideCenteredText?.Invoke();
         }
