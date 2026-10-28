@@ -6,7 +6,7 @@ namespace ProjectPostapo.Interaction
 {
     public abstract class Interactable : MonoBehaviour, IInteractable
     {
-        [SerializeField] private string objectName;
+        [SerializeField] private string objectId;
 
         public virtual void Interact(GameObject interactor, float interactorRange = 2f)
         {
@@ -28,9 +28,9 @@ namespace ProjectPostapo.Interaction
             }
         }
 
-        public string GetName()
+        public string GetId()
         {
-            return objectName;
+            return objectId;
         }
     }
 }

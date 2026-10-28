@@ -8,6 +8,6 @@ namespace ProjectPostapo.Interaction
         /// Interact with the object.
         /// </summary>
         public void Interact(GameObject interactor, float interactorRange = 2f);
-        public string GetName();
+        public string GetId();
     }
 }

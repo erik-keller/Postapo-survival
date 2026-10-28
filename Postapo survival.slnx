@@ -3,6 +3,7 @@
   <Project Path="InventorySystem.csproj" />
   <Project Path="CreatureSystem.csproj" />
   <Project Path="Player.csproj" />
+  <Project Path="LocalisationSystem.csproj" />
   <Project Path="Stats.csproj" />
   <Project Path="Assembly-CSharp.csproj" />
   <Project Path="ScriptableObjects.csproj" />

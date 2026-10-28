@@ -1,4 +1,5 @@
 using ProjectPostapo.Interaction;
+using ProjectPostapo.LocalisationSystem;
 using ProjectPostapo.ScriptableObjects;
 using ProjectPostapo.Stats;
 using ProjectPostapo.UI;
@@ -42,7 +43,7 @@ namespace ProjectPostapo.Player
                 return;
             }
 
-            UIEvents.t_OnShowCenteredText?.Invoke($"Press E to interact with: {interactable.GetName()}");
+            UIEvents.t_OnShowCenteredText?.Invoke($"{Localisation.Instance.GetTranslation("click_to_interact")} {Localisation.Instance.GetTranslation(interactable.GetId())}");
         }
 
         public void TryInteract()
@@ -65,8 +66,6 @@ namespace ProjectPostapo.Player
             {
                 return;
             }
-
-            UIEvents.t_OnShowCenteredText?.Invoke($"Press E to interact with {interactable.GetName()}");
 
             interactable.Interact(gameObject, distance);
             UIEvents.t_OnHideCenteredText?.Invoke();
