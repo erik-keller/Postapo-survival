@@ -13,6 +13,7 @@ namespace ProjectPostapo.Player
 
         [SerializeField] private GameObject centeredText;
         [SerializeField] private GameObject frames;
+        [SerializeField] private GameObject framePrefab;
 
         private void Start()
         {
@@ -31,6 +32,7 @@ namespace ProjectPostapo.Player
 
             for (int i = 0; i < inventory.Capacity; i++)
             {
+                Instantiate(framePrefab, frames.transform);
                 UpdateSlot(i, inventory.GetSlotItemId(i), inventory.GetSlotQuantity(i));
             }
         }
