@@ -2,11 +2,17 @@ using UnityEngine;
 
 namespace ProjectPostapo.CreatureSystem
 {
+    /// <summary>
+    /// Abstract class that holds an Execute method that can be implemented in child classes
+    /// </summary>
     public abstract class Command
     {
         public virtual void Execute(ref CreatureMovement actor) { }
     }
 
+    /// <summary>
+    /// Class used to execute moving in CreatureMovement
+    /// </summary>
     public class MoveCommand : Command
     {
         private Vector2 direction;
@@ -21,6 +27,10 @@ namespace ProjectPostapo.CreatureSystem
             actor.Move(direction, isSprinting);
         }
     }
+
+    /// <summary>
+    /// Class used to execute jumping in CreatureMovement
+    /// </summary>
     public class JumpCommand : Command
     {
         public override void Execute(ref CreatureMovement actor)
