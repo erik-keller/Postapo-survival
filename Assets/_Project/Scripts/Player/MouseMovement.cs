@@ -8,6 +8,7 @@ namespace ProjectPostapo.Player
         [SerializeField] private float sensitivity = 100f; // TODO: Make this adjustable in the settings menu
 
         [SerializeField] private Transform cameraTransform;
+        [SerializeField] private Camera playerCamera;
 
         private float xRotation = 0f;
 
@@ -16,7 +17,7 @@ namespace ProjectPostapo.Player
             Cursor.lockState = CursorLockMode.Locked;
         }
 
-        public void Look(Vector2 input)
+        public void MoveCamera(Vector2 input)
         {
             Vector2 mouse = new Vector2(input.x, input.y) * sensitivity * Time.fixedDeltaTime;
 

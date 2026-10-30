@@ -1,4 +1,4 @@
-using ProjectPostapo.InventorySystem;
+using ProjectPostapo.ScriptableObjects;
 using ProjectPostapo.Stats;
 using UnityEngine;
 
@@ -6,18 +6,15 @@ namespace ProjectPostapo.Interaction
 {
     public abstract class Interactable : MonoBehaviour, IInteractable
     {
-        [SerializeField] protected string itemId;
-        [SerializeField] protected ItemDatabase itemDatabase;
+        [SerializeField] private string objectId;
 
-        public virtual void Interact(GameObject interactor)
+        public virtual void Interact(GameObject interactor, float interactorRange = 2f)
         {
             if (interactor == null)
             {
                 Debug.LogError("Interactor object is null. Cannot interact.");
                 return;
             }
-
-            float interactorRange = 2f; // Default value
 
             if (interactor.TryGetComponent<IGetStatValue>(out IGetStatValue stats))
             {
@@ -29,23 +26,11 @@ namespace ProjectPostapo.Interaction
                 Debug.LogWarning("Interactor is too far away to interact with this object.");
                 return;
             }
-
-            Debug.Log("Interacted with " + gameObject.name);
         }
 
-        public string GetName()
+        public string GetId()
         {
-            if (itemDatabase == null)
-            {
-                Debug.LogWarning("itemDatabase is null");
-                return string.Empty;
-            }
-            if (itemDatabase.Instance.GetItem(itemId).itemName == null)
-            {
-                Debug.LogWarning("itemName not found");
-                return string.Empty;
-            }
-            return itemDatabase.Instance.GetItem(itemId).itemName;
+            return objectId;
         }
     }
 }

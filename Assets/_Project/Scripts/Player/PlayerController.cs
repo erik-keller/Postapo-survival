@@ -1,3 +1,4 @@
+using ProjectPostapo.CreatureSystem;
 using ProjectPostapo.Interaction;
 using ProjectPostapo.UI;
 using UnityEngine;
@@ -7,9 +8,9 @@ namespace ProjectPostapo.Player
 {
     public class PlayerController : MonoBehaviour
     {
-        [SerializeField] private PlayerMovement playerMovement;
+        [SerializeField] private CreatureMovement playerMovement;
         [SerializeField] private MouseMovement mouseMovement;
-        [SerializeField] private Camera playerCamera;
+        [SerializeField] private PlayerEye playerEye;
 
         [Header("Input Actions")]
         [SerializeField] private InputActionReference moveAction;
@@ -43,54 +44,33 @@ namespace ProjectPostapo.Player
         {
             HandleMovement();
             HandleInteraction();
+            HandleInventoryOpen();
         }
 
         private void FixedUpdate()
         {
             HandleMouse();
-            HandleInventoryOpen();
         }
 
         private void HandleMovement()
         {
             Vector2 input = moveAction.action.ReadValue<Vector2>();
 
-            if (input != Vector2.zero)
-            {
-                playerMovement.Move(input, sprintAction.action.IsPressed());
-            }
-            else
-            {
-                playerMovement.Move(Vector2.zero, sprintAction.action.IsPressed());
-            }
+            MoveCommand moveCommand = new(input, sprintAction.action.IsPressed());
+            moveCommand.Execute(ref playerMovement);
 
             if (jumpAction.action.WasPerformedThisFrame())
             {
-                playerMovement.Jump();
+                JumpCommand jumpCommand = new();
+                jumpCommand.Execute(ref playerMovement);
             }
         }
 
         private void HandleInteraction()
         {
-            Ray ray = playerCamera.ScreenPointToRay(Mouse.current.position.ReadValue());
-
-            if (!Physics.Raycast(ray, out RaycastHit hit, 2f))
-            {
-                UIEvents.t_OnHideCenteredText?.Invoke();
-                return;
-            }
-
-            if (!hit.collider.TryGetComponent<IInteractable>(out IInteractable interactable))
-            {
-                UIEvents.t_OnHideCenteredText?.Invoke();
-                return;
-            }
-
-            UIEvents.t_OnShowCenteredText?.Invoke($"Press E to interact with {interactable.GetName()}");
-
             if (interactionAction.action.WasPressedThisFrame())
             {
-                interactable.Interact(gameObject);
+                playerEye.TryInteract();
             }
         }
 
@@ -105,7 +85,7 @@ namespace ProjectPostapo.Player
 
             if (input != Vector2.zero)
             {
-                mouseMovement.Look(input);
+                mouseMovement.MoveCamera(input);
             }
         }
 

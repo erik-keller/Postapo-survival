@@ -1,10 +1,7 @@
 {
     "name": "UI",
     "rootNamespace": "ProjectPostapo.UI",
-    "references": [
-        "GUID:80bb97952313ae7478356b3ce45be7a0",
-        "GUID:4577610cd6aa8a648b7c4e9ae8e4bc96"
-    ],
+    "references": [],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,

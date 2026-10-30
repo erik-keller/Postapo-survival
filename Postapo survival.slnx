@@ -1,11 +1,14 @@
 ﻿<Solution>
+  <Project Path="Tests.csproj" />
   <Project Path="InventorySystem.csproj" />
+  <Project Path="CreatureSystem.csproj" />
   <Project Path="Player.csproj" />
+  <Project Path="LocalisationSystem.csproj" />
   <Project Path="Stats.csproj" />
   <Project Path="Assembly-CSharp.csproj" />
+  <Project Path="ScriptableObjects.csproj" />
   <Project Path="Interaction.csproj" />
   <Project Path="Core.csproj" />
   <Project Path="UI.csproj" />
-  <Project Path="CreatureSystem.csproj" />
   <Project Path="Assembly-CSharp-Editor.csproj" />
 </Solution>

@@ -1,3 +1,4 @@
+using ProjectPostapo.ScriptableObjects;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -5,30 +6,35 @@ namespace ProjectPostapo.InventorySystem
 {
     public class ItemDatabase : MonoBehaviour
     {
-        private static ItemDatabase instance;
-        public ItemDatabase Instance => instance;
+        public static ItemDatabase Instance;
 
         [SerializeField] private List<ItemSO> allItems = new();
         private Dictionary<string, ItemSO> itemLookupTable = new();
 
         private void Awake()
         {
-            if (instance != null && instance != this)
+            if (Instance == null)
+            {
+                Instance = this;
+                DontDestroyOnLoad(gameObject);
+            }
+            else
             {
                 Destroy(gameObject);
-                return;
             }
-            instance = this;
 
-            foreach(var item in allItems)
+            foreach(ItemSO item in allItems)
             {
-                if (!itemLookupTable.ContainsKey(item.id))
+                IGetComponent comp = item;
+                string id = comp.GetComponentValue(ItemComponent.Id);
+
+                if (!itemLookupTable.ContainsKey(id))
                 {
-                    itemLookupTable.Add(item.id, item);
+                    itemLookupTable.Add(id, item);
                 }
                 else
                 {
-                    Debug.LogWarning($"Duplicated ID of item in base: {item.id}");
+                    Debug.LogWarning($"Duplicated ID of item in base: {id}");
                 }
             }
         }

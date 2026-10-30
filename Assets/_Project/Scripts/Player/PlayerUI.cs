@@ -1,5 +1,6 @@
 using ProjectPostapo.CreatureSystem;
 using ProjectPostapo.InventorySystem;
+using ProjectPostapo.ScriptableObjects;
 using ProjectPostapo.UI;
 using UnityEngine;
 using UnityEngine.UI;
@@ -12,8 +13,6 @@ namespace ProjectPostapo.Player
 
         [SerializeField] private GameObject centeredText;
         [SerializeField] private GameObject frames;
-        //[SerializeField] private Inventory inventory;
-        [SerializeField] private ItemDatabase itemDatabase;
 
         private void Start()
         {
@@ -62,7 +61,7 @@ namespace ProjectPostapo.Player
                 return;
             }
 
-            ItemSO item = itemDatabase.Instance.GetItem(itemId);
+            ItemSO item = ItemDatabase.Instance.GetItem(itemId);
 
             if (item == null)
             {
@@ -71,7 +70,7 @@ namespace ProjectPostapo.Player
             }
 
             frameClass.FrameImgObject.SetActive(true);
-            frameClass.FrameImage.texture = item.icon;
+            frameClass.FrameImage.texture = item.Icon;
 
             frameClass.FrameText.text = quantity.ToString();
             frameClass.FrameTextObject.SetActive(true);
