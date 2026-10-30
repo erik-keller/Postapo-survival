@@ -9,35 +9,29 @@ namespace ProjectPostapo.CreatureSystem
 {
     public class Creature : MonoBehaviour, IGetStatValue, IAddItem
     {
-        public List<BodyPartEntry> BodyParts = new();
-        public List<StatEntry> EntryStats = new();
+        public List<BodyPartEntry> BodyParts = new(); // Body parts of creature used in Unity Editor
+        public List<StatEntry> EntryStats = new(); // Exact stats of creature used in Unity Editor
 
-        [HideInInspector] public StatsSystem Stats = new();
-        [HideInInspector] public CreatureState State = CreatureState.Idle;
+        [HideInInspector] public StatsSystem Stats = new(); // Stats system
+        [HideInInspector] public CreatureState State = CreatureState.Idle; // Creature state
 
-        [HideInInspector] public Inventory Inventory;
+        [HideInInspector] public Inventory Inventory; // Creature inventory
 
         private void Awake()
         {
-            if (EntryStats.Count != 0)
+            // Adding stats or returning if creature has no stats
+            if (EntryStats == null || EntryStats.Count == 0)
             {
-                for(int i = 0; i < EntryStats.Count; i++)
-                {
-                    Stats.AddStat(EntryStats[i].Type, EntryStats[i].Value);
-                }
+                Debug.LogWarning("EntryStats is null");
+                return;
+                
             }
-            else
+            for (int i = 0; i < EntryStats.Count; i++)
             {
-                Debug.LogWarning("Loaded default stat values");
-
-                Stats.AddStat(StatType.MaxHealth, 100.0f);
-                Stats.AddStat(StatType.CurrentHealth, 100.0f);
-                Stats.AddStat(StatType.InteractionRange, 2.0f);
-                Stats.AddStat(StatType.MovementSpeed, 5.0f);
-                Stats.AddStat(StatType.SprintMultiplier, 1.5f);
-                Stats.AddStat(StatType.JumpHeight, 1.5f);
+                Stats.AddStat(EntryStats[i].Type, EntryStats[i].Value);
             }
 
+            // Check if the bodyparts let creature to hold items
             uint handySlots = 0;
 
             var hand = GetBodyPart(BodyPartType.LeftHand);
@@ -53,6 +47,11 @@ namespace ProjectPostapo.CreatureSystem
             Inventory = new(handySlots);
         }
 
+        /// <summary>
+        /// This method return exact body part of a creature or null if the creature has not this body part
+        /// </summary>
+        /// <param name="bodyPartType">Enum variable of body part type to get</param>
+        /// <returns>Body part from BodyParts or null if not found</returns>
         public BodyPartEntry? GetBodyPart(BodyPartType bodyPartType)
         {
             for (int i = 0; i < BodyParts.Count; i++)
@@ -65,13 +64,34 @@ namespace ProjectPostapo.CreatureSystem
             return null;
         }
 
+        /// <summary>
+        /// Implementation of an interface IGetStatValue
+        /// This method return stats value of creature
+        /// </summary>
+        /// <param name="statType">Enum variable of stat type</param>
+        /// <returns>Value of stat or null if Stats are null</returns>
         public float GetStatValue(StatType statType)
         {
+            if (Stats == null)
+            {
+                return 0f;
+            }
             return Stats.GetStatValue(statType);
         }
 
+        /// <summary>
+        /// Implementation of an interface IAddItem
+        /// This method send to inventory an item to add and return if inventory did it
+        /// </summary>
+        /// <param name="itemId">id of an item to add</param>
+        /// <param name="amount">amount of an item</param>
+        /// <returns>True if Inventory added this item with this amount or false if not or null if Inventory is null</returns>
         public bool AddItem(string itemId, int amount)
         {
+            if (Inventory == null)
+            {
+                return false;
+            }
             return Inventory.AddItem(itemId, amount);
         }
 
