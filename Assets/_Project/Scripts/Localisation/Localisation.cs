@@ -6,9 +6,9 @@ namespace ProjectPostapo.LocalisationSystem
 {
     public class Localisation : MonoBehaviour
     {
-        public static Localisation Instance;
+        public static Localisation Instance; // Instance of ingame object
 
-        private Dictionary<string, string> dictionary = new();
+        private Dictionary<string, string> dictionary = new(); // Dictionary of words - <key, translated word>
 
         private void Awake()
         {
@@ -24,12 +24,21 @@ namespace ProjectPostapo.LocalisationSystem
             }
         }
 
+        /// <summary>
+        /// This method loads dictionary base from json file with name in format ISO-3166.json
+        /// </summary>
+        /// <param name="language">Name of file in ISO-3166 format without .json</param>
         public void LoadLanguage(string language)
         {
             TextAsset jsonTextFile = Resources.Load<TextAsset>($"Languages/{language}");
             dictionary = JsonConvert.DeserializeObject<Dictionary<string, string>>(jsonTextFile.ToString());
         }
 
+        /// <summary>
+        /// This method gives exact translation of key from dictionary
+        /// </summary>
+        /// <param name="id">id is equal for key in dictionary</param>
+        /// <returns>If the word was found in dictionary it returns it, if not it return an id</returns>
         public string GetTranslation(string id)
         {
             if (dictionary == null)
