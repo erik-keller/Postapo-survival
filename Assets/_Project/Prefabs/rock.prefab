@@ -126,7 +126,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5cba7515749c5f641ac98f177823405d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Pickable
-  distance: 2
-  item: {fileID: 11400000, guid: 8399a3304ed35c34da19cc4e9d5ff1c2, type: 2}
+  objectId: rock
   objectToDestroy: {fileID: 4058242020845871432}
+  itemId: rock
+  itemDatabase: {fileID: 0}
   quantity: 1

@@ -1,25 +1,46 @@
+using ProjectPostapo.InventorySystem;
 using System.Collections.Generic;
-using UnityEngine;
 
 namespace ProjectPostapo.CreatureSystem
 {
     public class BodyPart
     {
-        public BodyPartType type;
-        public List<BodyPartState> states;
+        public BodyPartType Type;
+        public List<BodyPartState> States = new();
+        public List<ItemInstance> Armor = new();
+        public int MaxArmorItems = 2;
 
-        public BodyPart(BodyPartType type, List<BodyPartState> states = null)
+        public BodyPart(BodyPartType type, List<BodyPartState> states = null, List<ItemInstance> armor = null)
         {
-            this.type = type;
+            this.Type = type;
 
             if (states != null)
             {
-                this.states = states;
+                this.States = states;
             }
-            else
+            if (armor != null)
             {
-                this.states = new();
+                this.Armor = armor;
             }
+        }
+
+        public bool Wear(ItemInstance itemInstance)
+        {
+            if (itemInstance == null)
+            {
+                return false;
+            }
+            if (Armor.Count > MaxArmorItems)
+            {
+                return false;
+            }
+            if (States.Contains(BodyPartState.Missing))
+            {
+                return false;
+            }
+
+            Armor.Add(itemInstance);
+            return true;
         }
     }
 
@@ -35,5 +56,6 @@ namespace ProjectPostapo.CreatureSystem
         Bleeding,
         Scratched,
         Bandaged,
+        Missing,
     }
 }

@@ -55,7 +55,7 @@ namespace ProjectPostapo.Player
                 return;
             }
 
-            if (itemId == null || itemId == "" || quantity <= 0)
+            if (itemId == null || itemId == string.Empty || quantity <= 0)
             {
                 ClearSlot(frameClass);
                 return;
@@ -65,7 +65,7 @@ namespace ProjectPostapo.Player
 
             if (item == null)
             {
-                Debug.LogWarning($"{item} is null");
+                Debug.LogWarning($"item is null");
                 return;
             }
 
