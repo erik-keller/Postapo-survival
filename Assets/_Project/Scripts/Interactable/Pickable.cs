@@ -1,17 +1,15 @@
 using ProjectPostapo.InventorySystem;
-using ProjectPostapo.ScriptableObjects;
 using UnityEngine;
 
 namespace ProjectPostapo.Interaction
 {
     public class Pickable : Interactable
     {
-        [SerializeField] private GameObject objectToDestroy;
+        [SerializeField] private GameObject objectToDestroy; // Object that will be destroyed after interaction
 
         [Header("Add Item")]
-        [SerializeField] protected string itemId;
-        [SerializeField] protected ItemDatabase itemDatabase;
-        [SerializeField] private ushort quantity = 1;
+        [SerializeField] protected string itemId; // Id of an item that will be given after interaction
+        [SerializeField] private ushort quantity = 1; // Quantity of an item that will be given after interaction
 
         public override void Interact(GameObject interactor, float interactorRange = 2f)
         {
