@@ -6,6 +6,13 @@ using UnityEngine;
 
 namespace ProjectPostapo.CreatureSystem
 {
+    public enum CreatureState
+    {
+        Idle,
+        Moving,
+        WatchingInventory,
+    }
+
     public class Creature : MonoBehaviour, IGetStatValue, IAddItem
     {
         public List<BodyPartEntry> BodyParts = new(); // Body parts of creature used in Unity Editor
