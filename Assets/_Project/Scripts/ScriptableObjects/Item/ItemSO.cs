@@ -10,7 +10,7 @@ namespace ProjectPostapo.ScriptableObjects
     {
         public Texture2D Icon;
         public SOType ObjectType;
-        public ItemSubtypes[] Subtypes;
+        public List<ItemSubtypes> Subtypes = new();
         public List<ComponentEntry> Components = new();
 
         public ComponentEntry? GetComponent(ItemComponent component)
