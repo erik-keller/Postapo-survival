@@ -5,10 +5,28 @@ namespace ProjectPostapo.CreatureSystem
 {
     public class BodyPart
     {
-        public List<BodyPartState> States = new();
-        public List<ItemInstance> Armor = new();
-        public int MaxArmorItems = 2;
-        public bool CanHoldSomething;
+        public enum BodyPartType
+        {
+            Torso,
+            Head,
+            LeftHand,
+            RightHand,
+        }
+
+        public enum BodyPartState
+        {
+            Broken,
+            Bleeding,
+            Scratched,
+            Bandaged,
+            Missing,
+        }
+
+        public List<BodyPartState> States = new(); // Holds a state of a body part, like broken, bandaged or missing(e.g. after amputation)
+        public List<ItemInstance> Armor = new(); // Holds armors weared on this body part
+        public int MaxArmorItems = 2; // Max number of armors on this body part
+        public bool CanHoldSomething; // If this body part is handy
+
 
         public BodyPart(List<BodyPartState> states = null, List<ItemInstance> armor = null, bool canHoldSomething = false)
         {
@@ -24,9 +42,16 @@ namespace ProjectPostapo.CreatureSystem
             this.CanHoldSomething = canHoldSomething;
         }
 
-        public bool Wear(ItemInstance itemInstance)
+        /// <summary>
+        /// This method tries to wear an armor on the body part if it's possible 
+        /// and return if it was succesful
+        /// In the futute I want to add here validation if the armor is not to heavy.
+        /// </summary>
+        /// <param name="armorItemInstance">Armor instance that has to be weared</param>
+        /// <returns>If the operation was succesful</returns>
+        public bool Wear(ItemInstance armorItemInstance)
         {
-            if (itemInstance == null)
+            if (armorItemInstance == null)
             {
                 return false;
             }
@@ -39,25 +64,8 @@ namespace ProjectPostapo.CreatureSystem
                 return false;
             }
 
-            Armor.Add(itemInstance);
+            Armor.Add(armorItemInstance);
             return true;
         }
-    }
-
-    public enum BodyPartType
-    {
-        Torso,
-        Head,
-        LeftHand,
-        RightHand,
-    }
-
-    public enum BodyPartState
-    {
-        Broken,
-        Bleeding,
-        Scratched,
-        Bandaged,
-        Missing,
     }
 }
