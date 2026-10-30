@@ -3,25 +3,25 @@ using System.Collections.Generic;
 
 namespace ProjectPostapo.CreatureSystem
 {
+    public enum BodyPartType
+    {
+        Torso,
+        Head,
+        LeftHand,
+        RightHand,
+    }
+
+    public enum BodyPartState
+    {
+        Broken,
+        Bleeding,
+        Scratched,
+        Bandaged,
+        Missing,
+    }
+
     public class BodyPart
     {
-        public enum BodyPartType
-        {
-            Torso,
-            Head,
-            LeftHand,
-            RightHand,
-        }
-
-        public enum BodyPartState
-        {
-            Broken,
-            Bleeding,
-            Scratched,
-            Bandaged,
-            Missing,
-        }
-
         public List<BodyPartState> States = new(); // Holds a state of a body part, like broken, bandaged or missing(e.g. after amputation)
         public List<ItemInstance> Armor = new(); // Holds armors weared on this body part
         public int MaxArmorItems = 2; // Max number of armors on this body part
