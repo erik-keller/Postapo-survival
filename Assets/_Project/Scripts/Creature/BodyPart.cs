@@ -5,15 +5,13 @@ namespace ProjectPostapo.CreatureSystem
 {
     public class BodyPart
     {
-        public BodyPartType Type;
         public List<BodyPartState> States = new();
         public List<ItemInstance> Armor = new();
         public int MaxArmorItems = 2;
+        public bool CanHoldSomething;
 
-        public BodyPart(BodyPartType type, List<BodyPartState> states = null, List<ItemInstance> armor = null)
+        public BodyPart(List<BodyPartState> states = null, List<ItemInstance> armor = null, bool canHoldSomething = false)
         {
-            this.Type = type;
-
             if (states != null)
             {
                 this.States = states;
@@ -22,6 +20,8 @@ namespace ProjectPostapo.CreatureSystem
             {
                 this.Armor = armor;
             }
+
+            this.CanHoldSomething = canHoldSomething;
         }
 
         public bool Wear(ItemInstance itemInstance)
@@ -48,6 +48,8 @@ namespace ProjectPostapo.CreatureSystem
     {
         Torso,
         Head,
+        LeftHand,
+        RightHand,
     }
 
     public enum BodyPartState
