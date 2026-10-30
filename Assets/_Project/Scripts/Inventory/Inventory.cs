@@ -5,7 +5,7 @@ namespace ProjectPostapo.InventorySystem
 {
     public class Inventory : IAddItem
     {
-        public uint Capacity = 2;
+        public uint Capacity;
         private List<InventorySlot> slots = new();
 
         public UnityEvent<int, string, int> OnInventorySlotChanged = new();
